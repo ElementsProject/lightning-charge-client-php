@@ -1,0 +1,19 @@
+{
+  "name": "elementsproject/lightning-strike-client-php",
+  "description": "PHP client for the Lightning Strike REST API",
+  "license": "MIT",
+  "repositories": [{
+    "type": "vcs",
+     "url": "https://github.com/shesek/php-restclient.git"
+  }],
+  "require": {
+    "tcdent/php-restclient": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.4",
+    "clue/phar-composer": "^1.0"
+  },
+  "autoload": {
+      "files": ["client.php"]
+  }
+}
