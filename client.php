@@ -1,11 +1,13 @@
 <?php
 require_once __DIR__.'/vendor/autoload.php';
 
+if (!class_exists('LightningStrikeClient')):
+
 class LightningStrikeClient {
   protected $api;
 
   public function __construct($url) {
-    $this->api = new RestClient([ 'base_url' => $url, 'format' => 'json' ]);
+    $this->api = new RestClient([ 'base_url' => rtrim($url, '/'), 'format' => 'json' ]);
   }
 
   public function invoice($msatoshi, $metadata=null) {
@@ -33,3 +35,5 @@ class LightningStrikeClient {
     return true;
   }
 }
+
+endif;
