@@ -5,24 +5,25 @@ PHP client for the Lightning Strike REST API.
 ## Install
 
 ```bash
-$ composer install blockstream/lightning-strike-client
+$ composer require elementsproject/lightning-strike-client-php
 ```
 
 ## Use
 
 ```php
 <?php
-// initialize client
 $strike = new LightingStrikeClient('http://localhost:8009');
 
-// create invoice
+// Create invoice
 $invoice = $strike->invoice(/*msatoshi*/ 50, /*metadata*/ [ 'customer' => 'Satoshi', 'products' => [ 'potato', 'chips' ]]);
 
-echo "to pay, send $invoice->msatoshi milli-satoshis with rhash $invoice->rhash, or copy the BOLT11 payment request: $invoice->payreq"
+tell_user("to pay, send $invoice->msatoshi milli-satoshis with rhash $invoice->rhash, or copy the BOLT11 payment request: $invoice->payreq");
 
-// fetch invoice by id
+// Fetch invoice by id
 $invoice = $strike->fetch('m51vlVWuIKGumTLbJ1RPb');
 ```
+
+TODO: document missing methods
 
 ## Test
 
