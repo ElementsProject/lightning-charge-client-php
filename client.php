@@ -40,6 +40,24 @@ class LightningStrikeClient {
   }
 
   /**
+   * Wait for an invoice to be paid.
+   *
+   * @param string $invoice_id
+   * @param int $timeout the timeout in seconds
+   * @return object|bool the paid invoice if paid, false otherwise.
+   */
+  public function wait($invoice_id, $timeout) {
+    $res = $this->api->get('/invoice/' . urlencode($invoice_id) . '/wait?timeout=' . (int)$timeout);
+
+    if ($res->info->http_code === 402)
+      return false;
+    else if ($res->info->http_code === 200)
+      return $res->decode_response();
+    else
+      throw new Exception('invalid response');
+  }
+
+  /**
    * Register a new webhook.
    *
    * @param string $invoice_id
