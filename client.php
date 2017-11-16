@@ -7,7 +7,7 @@ class LightningStrikeClient {
   protected $api;
 
   public function __construct($url) {
-    $this->api = new RestClient([ 'base_url' => rtrim($url, '/'), 'format' => 'json' ]);
+    $this->api = new RestClient([ 'base_url' => rtrim($url, '/') ]);
   }
 
   /**

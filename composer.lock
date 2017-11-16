@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c5c8fc20964237d1fc5fc178bed4bbf2",
-    "content-hash": "8a17a4bb4b1002e7d516684253d9a85e",
+    "hash": "079a0a23f6f23e11b3d2954fad9b2663",
+    "content-hash": "fee32fe008ed2ec05c2447b14b98960a",
     "packages": [
         {
             "name": "tcdent/php-restclient",
-            "version": "dev-master",
+            "version": "0.1.7",
             "source": {
                 "type": "git",
-                "url": "https://github.com/shesek/php-restclient.git",
-                "reference": "e31fb44b068e16f327a29c58013bc676cf1f6d0a"
+                "url": "https://github.com/tcdent/php-restclient.git",
+                "reference": "4522e8518eaef770d715977fcb45f187f8ad7499"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shesek/php-restclient/zipball/e31fb44b068e16f327a29c58013bc676cf1f6d0a",
-                "reference": "e31fb44b068e16f327a29c58013bc676cf1f6d0a",
+                "url": "https://api.github.com/repos/tcdent/php-restclient/zipball/4522e8518eaef770d715977fcb45f187f8ad7499",
+                "reference": "4522e8518eaef770d715977fcb45f187f8ad7499",
                 "shasum": ""
             },
             "require": {
@@ -36,31 +36,28 @@
                     "restclient.php"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
                     "name": "Travis Dent",
-                    "role": "Developer",
-                    "email": "tcdent@gmail.com"
+                    "email": "tcdent@gmail.com",
+                    "role": "Developer"
                 }
             ],
             "description": "A generic REST API client for PHP",
             "homepage": "http://github.com/tcdent/php-restclient",
             "keywords": [
-                "JSON",
-                "REST",
-                "XML",
                 "api",
                 "client",
-                "curl"
+                "curl",
+                "json",
+                "rest",
+                "xml"
             ],
-            "support": {
-                "issues": "http://github.com/tcdent/php-restclient/issues",
-                "source": "https://github.com/shesek/php-restclient/tree/dev-fixes"
-            },
-            "time": "2017-11-14 04:55:41"
+            "time": "2017-09-07 20:44:36"
         }
     ],
     "packages-dev": [
@@ -2454,9 +2451,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "tcdent/php-restclient": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
