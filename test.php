@@ -5,7 +5,7 @@ class LightningStrikeClientTest extends \PHPUnit\Framework\TestCase {
 
   public function test_create_invoice(){
     $strike = new LightningStrikeClient(getenv('STRIKE_URL'));
-    $invoice = $strike->invoice(50, [ 'customer' => 'Satoshi', 'products' => [ 'potato', 'chips' ]]);
+    $invoice = $strike->invoice([ 'msatoshi'  => 50, 'metadata' => [ 'customer' => 'Satoshi', 'products' => [ 'potato', 'chips' ] ] ]);
 
     $this->assertObjectHasAttribute('id', $invoice);
     $this->assertObjectHasAttribute('rhash', $invoice);
@@ -17,18 +17,18 @@ class LightningStrikeClientTest extends \PHPUnit\Framework\TestCase {
 
   public function test_fetch_invoice(){
     $strike = new LightningStrikeClient(getenv('STRIKE_URL'));
-    $saved = $strike->invoice(50, 9999);
+    $saved = $strike->invoice( [ 'msatoshi' => 50, 'metadata' => 'test_fetch_invoice' ]);
     $loaded = $strike->fetch($saved->id);
 
     $this->assertEquals($saved->id, $loaded->id);
     $this->assertEquals($saved->rhash, $loaded->rhash);
-    $this->assertEquals($loaded->metadata, 9999);
+    $this->assertEquals($loaded->metadata, 'test_fetch_invoice');
     $this->assertEquals($loaded->msatoshi, '50');
   }
 
   public function test_register_webhook(){
     $strike = new LightningStrikeClient(getenv('STRIKE_URL'));
-    $invoice = $strike->invoice(50);
+    $invoice = $strike->invoice([ 'msatoshi' => 50 ]);
     $this->assertTrue($strike->registerHook($invoice->id, 'http://example.com/'));
   }
 }

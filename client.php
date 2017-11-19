@@ -17,10 +17,8 @@ class LightningStrikeClient {
    * @param object $metadata
    * @return object the invoice
    */
-  public function invoice($msatoshi, $metadata=null) {
-    $res = $this->api->post('/invoice',
-      json_encode([ 'msatoshi' => $msatoshi, 'metadata' => $metadata ]),
-      [ 'Content-Type' => 'application/json' ]);
+  public function invoice($props) {
+    $res = $this->api->post('/invoice', json_encode($props), [ 'Content-Type' => 'application/json' ]);
 
     if ($res->info->http_code !== 201) throw new Exception('saving invoice failed');
 
