@@ -14,7 +14,7 @@ $ composer require elementsproject/lightning-strike-client-php
 <?php
 // Initialize client
 $strike = new LightingStrikeClient('http://localhost:8009', '[TOKEN]');
-// alternatively, the token can be provided as part of URL:
+// alternatively, the token can be provided as part of the URL:
 $strike = new LightingStrikeClient('http://api-token:[TOKEN]@localhost:8009');
 
 // Create invoice
