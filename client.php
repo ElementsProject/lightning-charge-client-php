@@ -4,8 +4,13 @@ if (!class_exists('LightningStrikeClient')):
 class LightningStrikeClient {
   protected $api;
 
-  public function __construct($url) {
-    $this->api = new RestClient([ 'base_url' => rtrim($url, '/') ]);
+  public function __construct($url, $api_token=null) {
+    $this->api = new RestClient([
+      'base_url' => rtrim($url, '/'),
+      'curl_options' => $api_token ? [
+        CURLOPT_USERPWD => 'api-token:' . $api_token
+      ] : []
+    ]);
   }
 
   /**

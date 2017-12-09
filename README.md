@@ -12,7 +12,10 @@ $ composer require elementsproject/lightning-strike-client-php
 
 ```php
 <?php
-$strike = new LightingStrikeClient('http://localhost:8009');
+// Initialize client
+$strike = new LightingStrikeClient('http://localhost:8009', '[TOKEN]');
+// alternatively, the token can be provided as part of URL:
+$strike = new LightingStrikeClient('http://api-token:[TOKEN]@localhost:8009');
 
 // Create invoice
 $invoice = $strike->invoice([ 'msatoshi' => 50, 'metadata' => [ 'customer' => 'Satoshi', 'products' => [ 'potato', 'chips' ] ] ]);
@@ -31,7 +34,7 @@ TODO: document missing methods
 ## Test
 
 ```bash
-$ STRIKE_URL=http://localhost:8009 phpunit test
+$ STRIKE_URL=http://api-token:[TOKEN]@localhost:8009 phpunit test
 ```
 
 ## License
