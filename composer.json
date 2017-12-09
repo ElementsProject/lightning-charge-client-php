@@ -1,7 +1,7 @@
 {
   "name": "elementsproject/lightning-strike-client-php",
   "description": "PHP client for the Lightning Strike REST API",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "require": {
     "tcdent/php-restclient": "^0.1"
