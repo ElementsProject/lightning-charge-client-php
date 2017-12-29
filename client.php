@@ -1,6 +1,4 @@
 <?php
-if (!class_exists('LightningStrikeClient')):
-
 class LightningStrikeClient {
   protected $api;
 
@@ -77,5 +75,3 @@ class LightningStrikeClient {
     return true;
   }
 }
-
-endif;
