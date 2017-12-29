@@ -34,7 +34,7 @@ TODO: document missing methods
 ## Test
 
 ```bash
-$ STRIKE_URL=http://api-token:[TOKEN]@localhost:8009 phpunit test
+$ CHARGE_URL=http://api-token:[TOKEN]@localhost:8009 phpunit test
 ```
 
 ## License

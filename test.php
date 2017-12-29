@@ -4,7 +4,7 @@ require_once 'vendor/autoload.php';
 class LightningChargeClientTest extends \PHPUnit\Framework\TestCase {
 
   public function test_create_invoice(){
-    $charge = new LightningChargeClient(getenv('STRIKE_URL'));
+    $charge = new LightningChargeClient(getenv('CHARGE_URL'));
     $invoice = $charge->invoice([ 'msatoshi'  => 50, 'metadata' => [ 'customer' => 'Satoshi', 'products' => [ 'potato', 'chips' ] ] ]);
 
     $this->assertObjectHasAttribute('id', $invoice);
@@ -16,7 +16,7 @@ class LightningChargeClientTest extends \PHPUnit\Framework\TestCase {
   }
 
   public function test_fetch_invoice(){
-    $charge = new LightningChargeClient(getenv('STRIKE_URL'));
+    $charge = new LightningChargeClient(getenv('CHARGE_URL'));
     $saved = $charge->invoice( [ 'msatoshi' => 50, 'metadata' => 'test_fetch_invoice' ]);
     $loaded = $charge->fetch($saved->id);
 
@@ -27,7 +27,7 @@ class LightningChargeClientTest extends \PHPUnit\Framework\TestCase {
   }
 
   public function test_register_webhook(){
-    $charge = new LightningChargeClient(getenv('STRIKE_URL'));
+    $charge = new LightningChargeClient(getenv('CHARGE_URL'));
     $invoice = $charge->invoice([ 'msatoshi' => 50 ]);
     $this->assertTrue($charge->registerHook($invoice->id, 'http://example.com/'));
   }
