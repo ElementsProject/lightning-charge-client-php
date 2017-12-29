@@ -1,6 +1,6 @@
 {
-  "name": "elementsproject/lightning-strike-client-php",
-  "description": "PHP client for the Lightning Strike REST API",
+  "name": "elementsproject/lightning-charge-client-php",
+  "description": "PHP client for the Lightning Charge REST API",
   "version": "0.1.2",
   "license": "MIT",
   "require": {

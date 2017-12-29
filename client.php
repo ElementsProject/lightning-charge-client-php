@@ -1,5 +1,5 @@
 <?php
-class LightningStrikeClient {
+class LightningChargeClient {
   protected $api;
 
   public function __construct($url, $api_token=null) {

@@ -1,11 +1,11 @@
 <?php
 require_once 'vendor/autoload.php';
 
-class LightningStrikeClientTest extends \PHPUnit\Framework\TestCase {
+class LightningChargeClientTest extends \PHPUnit\Framework\TestCase {
 
   public function test_create_invoice(){
-    $strike = new LightningStrikeClient(getenv('STRIKE_URL'));
-    $invoice = $strike->invoice([ 'msatoshi'  => 50, 'metadata' => [ 'customer' => 'Satoshi', 'products' => [ 'potato', 'chips' ] ] ]);
+    $charge = new LightningChargeClient(getenv('STRIKE_URL'));
+    $invoice = $charge->invoice([ 'msatoshi'  => 50, 'metadata' => [ 'customer' => 'Satoshi', 'products' => [ 'potato', 'chips' ] ] ]);
 
     $this->assertObjectHasAttribute('id', $invoice);
     $this->assertObjectHasAttribute('rhash', $invoice);
@@ -16,9 +16,9 @@ class LightningStrikeClientTest extends \PHPUnit\Framework\TestCase {
   }
 
   public function test_fetch_invoice(){
-    $strike = new LightningStrikeClient(getenv('STRIKE_URL'));
-    $saved = $strike->invoice( [ 'msatoshi' => 50, 'metadata' => 'test_fetch_invoice' ]);
-    $loaded = $strike->fetch($saved->id);
+    $charge = new LightningChargeClient(getenv('STRIKE_URL'));
+    $saved = $charge->invoice( [ 'msatoshi' => 50, 'metadata' => 'test_fetch_invoice' ]);
+    $loaded = $charge->fetch($saved->id);
 
     $this->assertEquals($saved->id, $loaded->id);
     $this->assertEquals($saved->rhash, $loaded->rhash);
@@ -27,8 +27,8 @@ class LightningStrikeClientTest extends \PHPUnit\Framework\TestCase {
   }
 
   public function test_register_webhook(){
-    $strike = new LightningStrikeClient(getenv('STRIKE_URL'));
-    $invoice = $strike->invoice([ 'msatoshi' => 50 ]);
-    $this->assertTrue($strike->registerHook($invoice->id, 'http://example.com/'));
+    $charge = new LightningChargeClient(getenv('STRIKE_URL'));
+    $invoice = $charge->invoice([ 'msatoshi' => 50 ]);
+    $this->assertTrue($charge->registerHook($invoice->id, 'http://example.com/'));
   }
 }

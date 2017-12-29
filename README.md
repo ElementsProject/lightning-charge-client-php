@@ -1,11 +1,11 @@
-# lightning-strike-client-php
+# lightning-charge-client-php
 
-PHP client for the Lightning Strike REST API.
+PHP client for the Lightning Charge REST API.
 
 ## Install
 
 ```bash
-$ composer require elementsproject/lightning-strike-client-php
+$ composer require elementsproject/lightning-charge-client-php
 ```
 
 ## Use
@@ -13,20 +13,20 @@ $ composer require elementsproject/lightning-strike-client-php
 ```php
 <?php
 // Initialize client
-$strike = new LightingStrikeClient('http://localhost:8009', '[TOKEN]');
+$charge = new LightingChargeClient('http://localhost:8009', '[TOKEN]');
 // alternatively, the token can be provided as part of the URL:
-$strike = new LightingStrikeClient('http://api-token:[TOKEN]@localhost:8009');
+$charge = new LightingChargeClient('http://api-token:[TOKEN]@localhost:8009');
 
 // Create invoice
-$invoice = $strike->invoice([ 'msatoshi' => 50, 'metadata' => [ 'customer' => 'Satoshi', 'products' => [ 'potato', 'chips' ] ] ]);
+$invoice = $charge->invoice([ 'msatoshi' => 50, 'metadata' => [ 'customer' => 'Satoshi', 'products' => [ 'potato', 'chips' ] ] ]);
 
 tell_user("to pay, send $invoice->msatoshi milli-satoshis with rhash $invoice->rhash, or copy the BOLT11 payment request: $invoice->payreq");
 
 // Fetch invoice by id
-$invoice = $strike->fetch('m51vlVWuIKGumTLbJ1RPb');
+$invoice = $charge->fetch('m51vlVWuIKGumTLbJ1RPb');
 
 // Create invoice denominated in USD
-$invoice = $strike->invoice([ 'currency' => 'USD', 'amount' => 0.15 ]);
+$invoice = $charge->invoice([ 'currency' => 'USD', 'amount' => 0.15 ]);
 ```
 
 TODO: document missing methods
