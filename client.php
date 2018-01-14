@@ -21,7 +21,7 @@ class LightningChargeClient {
   public function invoice($props) {
     $res = $this->api->post('/invoice', json_encode($props), [ 'Content-Type' => 'application/json' ]);
 
-    if ($res->info->http_code !== 201) throw new Exception('saving invoice failed');
+    if ($res->info->http_code !== 201) throw new Exception('failed saving invoice');
 
     return $res->decode_response();
   }
@@ -34,9 +34,21 @@ class LightningChargeClient {
    */
   public function fetch($invoice_id) {
     $res = $this->api->get('/invoice/' . urlencode($invoice_id));
-    if ($res->info->http_code !== 200) throw new Exception('fetching invoice failed');
+    if ($res->info->http_code !== 200) throw new Exception('failed fetching invoice');
     return $res->decode_response();
   }
+
+  /**
+   * Fetch all invoices
+   *
+   * @return array
+   */
+  public function fetchAll() {
+    $res = $this->api->get('/invoices');
+    if ($res->info->http_code !== 200) throw new Exception('failed fetching invoices');
+    return $res->decode_response();
+  }
+
 
   /**
    * Wait for an invoice to be paid.

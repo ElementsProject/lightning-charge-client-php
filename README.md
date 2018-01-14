@@ -12,24 +12,30 @@ $ composer require elementsproject/lightning-charge-client-php
 
 ```php
 <?php
+require_once 'vendor/autoload.php';
+
 // Initialize client
 $charge = new LightingChargeClient('http://localhost:8009', '[TOKEN]');
-// alternatively, the token can be provided as part of the URL:
-$charge = new LightingChargeClient('http://api-token:[TOKEN]@localhost:8009');
 
 // Create invoice
 $invoice = $charge->invoice([ 'msatoshi' => 50, 'metadata' => [ 'customer' => 'Satoshi', 'products' => [ 'potato', 'chips' ] ] ]);
 
 tell_user("to pay, send $invoice->msatoshi milli-satoshis with rhash $invoice->rhash, or copy the BOLT11 payment request: $invoice->payreq");
 
+// Create invoice denominated in USD
+$invoice = $charge->invoice([ 'currency' => 'USD', 'amount' => 0.15 ]);
+
 // Fetch invoice by id
 $invoice = $charge->fetch('m51vlVWuIKGumTLbJ1RPb');
 
-// Create invoice denominated in USD
-$invoice = $charge->invoice([ 'currency' => 'USD', 'amount' => 0.15 ]);
+// Fetch all invoices
+$invoice = $charge->fetchAll();
+
+// Register web hook
+$charge->registerHook('m51vlVWuIKGumTLbJ1RPb', 'http://my-server.com/my-callback-url');
 ```
 
-TODO: document missing methods
+*TODO*: document `wait`
 
 ## Test
 
