@@ -60,17 +60,16 @@ class LightningChargeClient {
   public function wait($invoice_id, $timeout) {
     $res = $this->api->get('/invoice/' . urlencode($invoice_id) . '/wait?timeout=' . (int)$timeout);
 
-    // 402 Payment Required: timeout reached without payment, invoice is still payable
-    if ($res->info->http_code === 402)
-      return null;
-    // 410 Gone: invoice expired and can not longer be paid
-    else if ($res->info->http_code === 410)
-      return false;
-    // 200 OK: invoice is paid, returns the updated invoice
-    else if ($res->info->http_code === 200)
-      return $res->decode_response();
-    else
-      throw new Exception('invalid response');
+    switch ($res->info->http_code) {
+      // 200 OK: invoice is paid, return the updated invoice
+      case 200: return $res->decode_response();
+      // 402 Payment Required: timeout reached without payment, invoice is still payable
+      case 402: return null;
+      // 410 Gone: invoice expired and can not longer be paid
+      case 410: return false;
+
+      default: throw new Error('unknown status code ' . $res->info->http_code);
+    }
   }
 
   /**
