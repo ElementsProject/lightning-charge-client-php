@@ -15,7 +15,7 @@ $ composer require elementsproject/lightning-charge-client-php
 require_once 'vendor/autoload.php';
 
 // Initialize client
-$charge = new LightingChargeClient('http://localhost:8009', '[TOKEN]');
+$charge = new LightningChargeClient('http://localhost:8009', '[TOKEN]');
 
 // Create invoice
 $invoice = $charge->invoice([ 'msatoshi' => 50, 'metadata' => [ 'customer' => 'Satoshi', 'products' => [ 'potato', 'chips' ] ] ]);
